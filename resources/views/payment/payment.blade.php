@@ -40,7 +40,7 @@
                             <tbody>
                             @foreach($payments as $payment)
                                 <tr>
-                                    <td>{{$payment->order->name}}</td>
+                                    <td>{{$payment->order->name ?? 'Buyurtma o\'chirilgan}}</td>
                                     <td>{{$payment->payment_type}}</td>
                                     <td>{{$payment->pay_type}}</td>
                                     <td>@money($payment->paid_price)</td>
@@ -70,7 +70,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Haqiqatdan ham ushbu <b>{{$payment->order->name}}</b> buyurtmasini
+                                                Haqiqatdan ham ushbu <b>{{$payment->order->name ?? 'Buyurtma o\'chirilgan}}</b> buyurtmasini
                                                 o'chirishni
                                                 tasdiqlaysizmi?
                                             </div>
