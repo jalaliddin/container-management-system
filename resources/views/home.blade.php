@@ -88,8 +88,8 @@
                                         <h5 class="card-title"></h5>
                                         <p class="card-text">
                                         <ol>
-                                            @foreach($orders as $order)
-                                                <li><b>{{$order['name'] }}</b> - {{$order['phone']}}</li>
+                                            @foreach($ordersName as $orderName)
+                                                <li><b>{{$orderName['name'] }}</b> - {{$orderName['phone']}}</li>
                                             @endforeach
                                         </ol>
                                         </p>

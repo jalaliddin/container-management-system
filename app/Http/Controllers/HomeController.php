@@ -25,8 +25,9 @@ class HomeController extends Controller
     public function index()
     {
         $orders = Order::all()->where('status',1);
-        $completedOrdersAll = Order::all()->where('status',3);
+        $completedOrdersAll = Order::all()->where('status',3)->take(10);
         $orderQuantity = Order::all()->count();
+        $ordersName = Order::all()->where('status',1)->take(10);
         $activeOrders = Order::all()->where('status', '1')->count();
         $passiveOrders = Order::all()->where('status', '2')->count();
         $completedOrders = Order::all()->where('status', '3')->count();
@@ -54,7 +55,7 @@ class HomeController extends Controller
             'orderQuantity', 'activeOrders',
             'passiveOrders', 'completedOrders', 'sortedTowns',
             'sumContainerPrice','sumPayments', 'creditSum',
-            'orders','completedOrdersAll'
+            'orders','completedOrdersAll','ordersName'
         ));
     }
 }

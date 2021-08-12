@@ -96,14 +96,14 @@
                                             <li>To'langan summa: <b>@money($order->payments->sum('paid_price'))</b>
                                             </li>
                                             <li>
-                                                Qolgan summa: <b>@money($order->payments->sum('paid_price')-$order->container_price)</b>
+                                                Qolgan summa: <b>@money($order->container_price-$order->payments->sum('paid_price'))</b>
                                             </li>
                                         </ol>
                                         @foreach($order->payments as $payment)
                                             <div class="card border-success mb-3 mx-auto" style="max-width: 18rem;">
                                                 <div class="card-header bg-transparent border-success">Kirim kartochkasi</div>
                                                 <div class="card-body text-success">
-                                                    <h5 class="card-title">{{$payment->paid_price}}</h5>
+                                                    <h5 class="card-title">@money($payment->paid_price)</h5>
                                                     <p class="card-text">{{$payment->payment_type}} orqali o'tkazilgan.</p>
                                                 </div>
                                                 <div class="card-footer bg-transparent border-success">Sana:
