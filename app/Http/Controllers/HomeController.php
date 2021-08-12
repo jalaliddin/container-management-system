@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderCoordinates;
 use App\Models\Payment;
 
 class HomeController extends Controller
@@ -24,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $coordinates = OrderCoordinates::all();
+//        dd($coordinates);
         $orders = Order::all()->where('status',1);
         $completedOrdersAll = Order::all()->where('status',3)->take(10);
         $orderQuantity = Order::all()->count();
@@ -55,7 +58,7 @@ class HomeController extends Controller
             'orderQuantity', 'activeOrders',
             'passiveOrders', 'completedOrders', 'sortedTowns',
             'sumContainerPrice','sumPayments', 'creditSum',
-            'orders','completedOrdersAll','ordersName'
+            'orders','completedOrdersAll','ordersName', 'coordinates'
         ));
     }
 }

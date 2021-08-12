@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+            background-color: grey;
+        }
+    </style>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col">
@@ -67,19 +74,25 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <div class="card border-primary mb-3" style="max-width: 18rem;">
-                                    <div class="card-header">Faol shahar/tumanlar</div>
-                                    <div class="card-body text-primary">
-                                        <h5 class="card-title"></h5>
-                                        <p class="card-text">
-                                        <ol>
-                                            @foreach($sortedTowns as $town)
-                                                <li><b>{{$town['town'] }}</b> - {{$town['count']}} ta buyurtma</li>
-                                            @endforeach
-                                        </ol>
-                                        </p>
+                                    <div id="map"></div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col">
+                                    <div class="card border-primary mb-3" style="max-width: 18rem;">
+                                        <div class="card-header">Faol shahar/tumanlar</div>
+                                        <div class="card-body text-primary">
+                                            <h5 class="card-title"></h5>
+                                            <p class="card-text">
+                                            <ol>
+                                                @foreach($sortedTowns as $town)
+                                                    <li><b>{{$town['town'] }}</b> - {{$town['count']}} ta buyurtma</li>
+                                                @endforeach
+                                            </ol>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
                             </div>
                             <div class="col">
                                 <div class="card border-primary mb-3" style="max-width: 18rem;">
@@ -104,7 +117,8 @@
                                         <p class="card-text">
                                         <ol>
                                             @foreach($completedOrdersAll as $completedOrderAll)
-                                                <li><b>{{$completedOrderAll['name'] }}</b> - {{$completedOrderAll['phone']}}</li>
+                                                <li><b>{{$completedOrderAll['name'] }}</b>
+                                                    - {{$completedOrderAll['phone']}}</li>
                                             @endforeach
                                         </ol>
                                         </p>
@@ -117,4 +131,38 @@
             </div>
         </div>
     </div>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjebhPUM5ER3yiFDvN4uHoX8PlnYSrmuQ&callback=initMap">
+    </script>
+    <script>
+        function initMap() {
+            var center = {lat: 41.3565, lng: 60.8567};
+            var locations = [
+                @foreach($coordinates as $coordinate)
+                ['Ism: {{$coordinate->order->name}} <br>\
+    Tel.: {{$coordinate->order->phone}}<br>\
+   <a href="{{route('order.show',$coordinate->order->id)}}">Batafsil ko\'rish</a>', {{$coordinate->address_latitude}}, {{$coordinate->address_longitude}}],
+                    @endforeach
+            ];
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 9,
+                center: center
+            });
+            var infowindow = new google.maps.InfoWindow({});
+            var marker, count;
+            for (count = 0; count < locations.length; count++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[count][1], locations[count][2]),
+                    map: map,
+                    title: locations[count][0]
+                });
+                google.maps.event.addListener(marker, 'click', (function (marker, count) {
+                    return function () {
+                        infowindow.setContent(locations[count][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, count));
+            }
+        }
+    </script>
 @endsection
