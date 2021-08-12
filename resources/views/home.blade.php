@@ -30,7 +30,7 @@
                                 <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
                                     <div class="card-header">Umumiy qarzdorlarning summasi</div>
                                     <div class="card-body">
-                                        <h3 class="card-title">@money($creditSum)</h3>
+                                        <h3 class="card-title">@homeMoney($creditSum)</h3>
                                         <p class="card-text"></p>
                                     </div>
                                 </div>

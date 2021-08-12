@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col">
                 <div class="card">
-                    <div class="card-header"><span>ID: <b>{{$order->id}}</b></span> {{ __('Mijoz ma\'lumotlari') }}
+                    <div class="card-header"><span>ID: <b>{{$order->id}}</b></span> {{ __('Mijoz ma\'lumotlarini') }} <span><b>{{$order->author}}</b> kiritdi.</span>
                     </div>
                     <div class="container py-4">
                         <a href="{{route('order.index')}}">

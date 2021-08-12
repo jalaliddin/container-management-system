@@ -33,9 +33,9 @@
                             </div>
                             <b>Konteyner summasi:</b>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="price-input"  name="container_price_format" placeholder="Konteyner summasi">
+                                <input type="text" class="form-control" id="price-input"  name="container_price_format" placeholder="Konteyner summasi" value="0.00">
                             </div>
-                            <input hidden readonly type="number" id="number" name="container_price">
+                            <input hidden readonly type="number" id="number" value="0.00" name="container_price">
                             <div class="form-group">
                             </div>
                             <b>Shahar/Tumanni tanlang:</b>

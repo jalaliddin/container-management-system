@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -51,7 +52,7 @@ class OrderController extends Controller
             'table_6' => $request->type_6,
             'table_7' => $request->type_7,
             'description' => $request->description,
-            'author' => 1
+            'author' => Auth::user()->name
         ]);
         return redirect()->route('order.index')
             ->with('message', 'Ma\'lumotlar muvaffaqiyatli saqlandi!');
