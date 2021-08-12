@@ -140,7 +140,7 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAWJK6-VbMoMPuLxDFybRc4MzwY9pKQ9KU&sensor=false"></script>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyCA8EHgC0KmfHdKWJ6kZpj1IB7oxFBnhDk&sensor=false"></script>
     <script>
         window.onload = function() {
             var latlng = new google.maps.LatLng({!! json_encode($order->coordinate->address_latitude??'') !!}, {!! json_encode($order->coordinate->address_longitude??'') !!});
