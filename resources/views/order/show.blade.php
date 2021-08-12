@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        #map {
+            height: 500px;
+            border: 1px solid #000;
+        }
+    </style>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col">
@@ -115,6 +121,18 @@
 
                                 </div>
                             </di>
+                            <br>
+                            <div class="row">
+                                <div class="col border">
+                                    <div class="container">
+                                        <br>
+                                        <b>Konteynerning joylashuvini.</b>
+                                        <div class="form-group">
+                                            <div id="map"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <hr>
                         </div>
                     </div>
@@ -122,7 +140,30 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyDjebhPUM5ER3yiFDvN4uHoX8PlnYSrmuQ&sensor=false"></script>
     <script>
+        window.onload = function() {
+            var latlng = new google.maps.LatLng({!! json_encode($order->coordinate->address_latitude??'') !!}, {!! json_encode($order->coordinate->address_longitude??'') !!});
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: latlng,
+                zoom: 11,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title: 'Set lat/lon values for this property',
+                draggable: false
+            });
+            google.maps.event.addListener(marker, 'dragend', function(a) {
+                console.log(a);
+                // var div = document.createElement('div');
+                // div.innerHTML = a.latLng.lat().toFixed(4) + ', ' + a.latLng.lng().toFixed(4);
+                // document.getElementsByTagName('body')[0].appendChild(div);
+                // document.getElementById("lat").value = a.latLng.lat().toFixed(4);
+                // document.getElementById("long").value = a.latLng.lng().toFixed(4)
+            });
+        };
         document.getElementById("price-input").onblur = function () {
 
             //number-format the user input

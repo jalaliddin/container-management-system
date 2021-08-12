@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        #map {
+            height: 300px;
+            border: 1px solid #000;
+        }
+    </style>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col">
@@ -36,8 +42,13 @@
                                 <input type="text" class="form-control" id="price-input"  name="container_price_format" placeholder="Konteyner summasi" value="0.00">
                             </div>
                             <input hidden readonly type="number" id="number" value="0.00" name="container_price">
+                            <b>Konteynerning kelajakdagi joylashuvini tanlang.</b>
                             <div class="form-group">
+                                <div id="map"></div>
                             </div>
+                            <input hidden readonly type="text" id="lat" value="" name="lat">
+                            <input hidden readonly type="text" id="long" value="" name="long">
+
                             <b>Shahar/Tumanni tanlang:</b>
                             <div class="form-group">
                                 <select class="custom-select" name="town">
@@ -55,6 +66,9 @@
                                     <option value="Yangibozor">Yangibozor</option>
                                     <option value="none">none</option>
                                 </select>
+                            </div>
+                            <div class="form-group">
+
                             </div>
                             <b>Holati:</b>
                             <div class="form-group">
@@ -139,7 +153,33 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyDjebhPUM5ER3yiFDvN4uHoX8PlnYSrmuQ&sensor=false"></script>
+    <scritp>
+
+    </scritp>
     <script>
+        window.onload = function() {
+            var latlng = new google.maps.LatLng(41.3895, 60.3415);
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: latlng,
+                zoom: 11,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title: 'Set lat/lon values for this property',
+                draggable: true
+            });
+            google.maps.event.addListener(marker, 'dragend', function(a) {
+                console.log(a);
+                // var div = document.createElement('div');
+                // div.innerHTML = a.latLng.lat().toFixed(4) + ', ' + a.latLng.lng().toFixed(4);
+                // document.getElementsByTagName('body')[0].appendChild(div);
+                document.getElementById("lat").value = a.latLng.lat().toFixed(4);
+                document.getElementById("long").value = a.latLng.lng().toFixed(4)
+            });
+        };
         document.getElementById("price-input").onblur =function (){
 
             //number-format the user input

@@ -31,4 +31,9 @@ class Order extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    public function coordinate()
+    {
+        return $this->hasOne(OrderCoordinates::class);
+    }
 }

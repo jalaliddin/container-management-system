@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
+use App\Models\OrderCoordinates;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -37,7 +38,8 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        Order::create([
+//        dd($request);
+        $order = Order::create([
             'name' => $request->name,
             'phone' => $request->phone,
             'container_price' => $request->container_price,
@@ -54,6 +56,12 @@ class OrderController extends Controller
             'description' => $request->description,
             'author' => Auth::user()->name
         ]);
+
+        $coordinates = new OrderCoordinates();
+        $coordinates->address_latitude = $request->lat;
+        $coordinates->address_longitude = $request->long;
+        $order->payments()->save($coordinates);
+
         return redirect()->route('order.index')
             ->with('message', 'Ma\'lumotlar muvaffaqiyatli saqlandi!');
     }
@@ -67,6 +75,7 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::find($id);
+//        dd($order->coordinate);
         return view('order.show', compact('order'));
     }
 
