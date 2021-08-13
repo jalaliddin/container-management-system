@@ -139,9 +139,9 @@
             var center = {lat: 41.3565, lng: 60.8567};
             var locations = [
                 @foreach($coordinates as $coordinate)
-                ['Ism: {{$coordinate->order->name}} <br>\
-    Tel.: {{$coordinate->order->phone}}<br>\
-   <a href="{{route('order.show',$coordinate->order->id)}}">Batafsil ko\'rish</a>', {{$coordinate->address_latitude}}, {{$coordinate->address_longitude}}],
+                ['Ism: name <br>\
+    Tel.: phone <br>\
+   <a href="{{route('order.show',1)}}">Batafsil ko\'rish</a>', {{$coordinate->address_latitude}}, {{$coordinate->address_longitude}}],
                     @endforeach
             ];
             var map = new google.maps.Map(document.getElementById('map'), {
