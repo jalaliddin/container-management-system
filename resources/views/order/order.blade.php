@@ -18,43 +18,51 @@
                                 @endforeach
                             </ul>
                         @endif
-                            <form action="{{route('orders.search')}}" method="get">
-                                    <input  name="q" type="text" placeholder="ism bo'yicha qidirish"/>
-                                    <input  name="phone" type="number" placeholder="telefon raqam bo'yicha qidirish"/>
-                                    <select id="statusDropdown" name="status">
-                                        <option value="">Hammasi</option>
-                                        <option value="1">Faol</option>
-                                        <option value="2">Bekor qilingan</option>
-                                        <option value="3">Tayyor</option>
-                                    </select>
-                                    <select name="town">
-                                        <option value="">Hammasi</option>
-                                        <option value="Xiva t">Xiva t</option>
-                                        <option value="Xiva sh">Xiva sh</option>
-                                        <option value="Bog'ot">Bog'ot</option>
-                                        <option value="Gurlan">Gurlan</option>
-                                        <option value="Qo'shko'pir">Qo'shko'pir</option>
-                                        <option value="Shovot">Shovot</option>
-                                        <option value="Urganch t">Urganch t</option>
-                                        <option value="Urganch sh">Urganch sh</option>
-                                        <option value="Xazorasp">Xazorasp</option>
-                                        <option value="Xonqa">Xonqa</option>
-                                        <option value="Yangiariq">Yangiariq</option>
-                                        <option value="Yangibozor">Yangibozor</option>
-                                        <option value="none">none</option>
-                                    </select>
-                                <button class="btn-success btn" type="submit">Izlash</button>
-                            </form>
+                            <div class="row">
+                                <div class="col-9">
+                                    <form action="{{route('orders.search')}}" method="get">
+                                        <input  name="q" type="text" placeholder="ism bo'yicha qidirish"/>
+                                        <input  name="phone" type="number" placeholder="telefon raqam bo'yicha qidirish"/>
+                                        <select id="statusDropdown" name="status">
+                                            <option value="">Hammasi</option>
+                                            <option value="1">Faol</option>
+                                            <option value="2">Bekor qilingan</option>
+                                            <option value="3">Tayyor</option>
+                                        </select>
+                                        <select name="town">
+                                            <option value="">Hammasi</option>
+                                            <option value="Xiva t">Xiva t</option>
+                                            <option value="Xiva sh">Xiva sh</option>
+                                            <option value="Bog'ot">Bog'ot</option>
+                                            <option value="Gurlan">Gurlan</option>
+                                            <option value="Qo'shko'pir">Qo'shko'pir</option>
+                                            <option value="Shovot">Shovot</option>
+                                            <option value="Urganch t">Urganch t</option>
+                                            <option value="Urganch sh">Urganch sh</option>
+                                            <option value="Xazorasp">Xazorasp</option>
+                                            <option value="Xonqa">Xonqa</option>
+                                            <option value="Yangiariq">Yangiariq</option>
+                                            <option value="Yangibozor">Yangibozor</option>
+                                            <option value="none">none</option>
+                                        </select>
+                                        <button class="btn-secondary btn" type="submit">Izlash</button>
+                                    </form>
+                                </div>
+                                <div class="col-3">
+                                    <div class="btn-toolbar pull-right">
+                                        <a href="{{route('export.order')}}">
+                                            <button type="button" class="btn btn-success mr-3">Excel</button>
+                                        </a>
+                                        <a href="{{route('order.create')}}">
+                                            <button type="button" class="btn btn-primary mr-3">Yangi buyurtma</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
 {{--                            <span>Izlash:</span>--}}
 {{--                            <p>--}}
 {{--                            <input type="text" id="myInput" onkeyup="myFunction()"--}}
 {{--                                  placeholder="Telefon raqam orqali izlash">--}}
-
-
-                            <a href="{{route('order.create')}}">
-                                <button type="button" class="btn btn-primary float-right">Yangi buyurtma</button>
-                            </a>
-                            <br>
                             <br>
                         <table class="table table-striped table-hover" id="orderTable">
                             <thead>

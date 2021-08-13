@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\OrdersExport;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\OrderCoordinates;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -163,4 +164,10 @@ class OrderController extends Controller
         return view('order.order',compact('orders'));
 
     }
+
+    public function export()
+    {
+        return Excel::download(new OrdersExport, 'buyurtmalar.xlsx');
+    }
+
 }

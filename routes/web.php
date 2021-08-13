@@ -26,6 +26,7 @@ Route::resource('payment', \App\Http\Controllers\PaymentController::class)->midd
 Route::resource('setting', \App\Http\Controllers\SettingController::class);
 
 Route::get('/search/order', [App\Http\Controllers\OrderController::class, 'search'])->name('orders.search');
+Route::get('/export/order', [App\Http\Controllers\OrderController::class, 'export'])->name('export.order')->middleware('auth');
 
 //Route::resource('order', 'OrderController', ['names' => [
 //    'index' => 'order'
