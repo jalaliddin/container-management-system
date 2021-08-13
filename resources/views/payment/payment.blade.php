@@ -18,9 +18,9 @@
                                 @endforeach
                             </ul>
                         @endif
-                        <span>Izlash:</span>
-                        <p><input type="text" id="myInput" onkeyup="myFunction()"
-                                  placeholder="Ism orqali izlash">
+{{--                        <span>Izlash:</span>--}}
+{{--                        <p><input type="text" id="myInput" onkeyup="myFunction()"--}}
+{{--                                  placeholder="Ism orqali izlash">--}}
                             <a href="{{route('payment.create')}}">
                                 <button type="button" class="btn btn-primary float-right">Yangi to'lov</button>
                             </a>
@@ -91,6 +91,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                            {{ $payments->links() }}
                     </div>
                 </div>
             </div>

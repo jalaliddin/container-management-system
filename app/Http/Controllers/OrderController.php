@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\OrderCoordinates;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -16,7 +18,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all()->sortByDesc('created_at');
+        $orders = Order::orderBy('created_at', 'desc')->paginate(10);
         return view('order.order', compact('orders'));
     }
 
@@ -131,5 +133,34 @@ class OrderController extends Controller
         $order->delete();
         return redirect()->route('order.index')
             ->with('message', 'O\'chirildi');
+    }
+
+    public function search(Request $request)
+    {
+
+        $orders = Order::orderBy('created_at', 'desc');
+
+        if(!empty(request('q'))){
+            $query= $request->q;
+            $orders = Order::where('name', 'LIKE', '%' . $query . '%');
+        }
+
+        if(!empty(request('phone'))){
+            $query= $request->phone;
+            $orders = Order::where('phone', 'LIKE', '%' . $query . '%');
+        }
+
+        if (!empty(request('status'))){
+            $orders = Order::where('status',$request->status);
+        }
+
+        if (!empty(request('town'))){
+            $orders = Order::where('town',$request->town);
+        }
+
+        $orders = $orders->paginate(10);
+
+        return view('order.order',compact('orders'));
+
     }
 }

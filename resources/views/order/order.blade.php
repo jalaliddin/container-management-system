@@ -18,16 +18,38 @@
                                 @endforeach
                             </ul>
                         @endif
-                        <span>Izlash:</span>
-                        <p><input type="text" id="myInput" onkeyup="myFunction()"
-                                  placeholder="Telefon raqam orqali izlash">
+                            <form action="{{route('orders.search')}}" method="get">
+                                    <input  name="q" type="text" placeholder="ism bo'yicha qidirish"/>
+                                    <input  name="phone" type="number" placeholder="telefon raqam bo'yicha qidirish"/>
+                                    <select id="statusDropdown" name="status">
+                                        <option value="">Hammasi</option>
+                                        <option value="1">Faol</option>
+                                        <option value="2">Bekor qilingan</option>
+                                        <option value="3">Tayyor</option>
+                                    </select>
+                                    <select name="town">
+                                        <option value="">Hammasi</option>
+                                        <option value="Xiva t">Xiva t</option>
+                                        <option value="Xiva sh">Xiva sh</option>
+                                        <option value="Bog'ot">Bog'ot</option>
+                                        <option value="Gurlan">Gurlan</option>
+                                        <option value="Qo'shko'pir">Qo'shko'pir</option>
+                                        <option value="Shovot">Shovot</option>
+                                        <option value="Urganch t">Urganch t</option>
+                                        <option value="Urganch sh">Urganch sh</option>
+                                        <option value="Xazorasp">Xazorasp</option>
+                                        <option value="Xonqa">Xonqa</option>
+                                        <option value="Yangiariq">Yangiariq</option>
+                                        <option value="Yangibozor">Yangibozor</option>
+                                        <option value="none">none</option>
+                                    </select>
+                                <button class="btn-success btn" type="submit">Izlash</button>
+                            </form>
+{{--                            <span>Izlash:</span>--}}
+{{--                            <p>--}}
+{{--                            <input type="text" id="myInput" onkeyup="myFunction()"--}}
+{{--                                  placeholder="Telefon raqam orqali izlash">--}}
 
-                            <select id="statusDropdown" oninput="filterTable()">
-                                <option value="All">Hammasi</option>
-                                <option value="Faol">Faol</option>
-                                <option value="Bekor qilingan">Bekor qilingan</option>
-                                <option value="Tayyor">Tayyor</option>
-                            </select>
 
                             <a href="{{route('order.create')}}">
                                 <button type="button" class="btn btn-primary float-right">Yangi buyurtma</button>
@@ -111,6 +133,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        {{ $orders->links() }}
                     </div>
                 </div>
             </div>

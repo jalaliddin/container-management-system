@@ -24,6 +24,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('order', \App\Http\Controllers\OrderController::class)->middleware('auth');
 Route::resource('payment', \App\Http\Controllers\PaymentController::class)->middleware('auth');
 Route::resource('setting', \App\Http\Controllers\SettingController::class);
+
+Route::get('/search/order', [App\Http\Controllers\OrderController::class, 'search'])->name('orders.search');
+
 //Route::resource('order', 'OrderController', ['names' => [
 //    'index' => 'order'
 //]]);
