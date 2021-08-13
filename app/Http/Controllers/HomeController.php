@@ -25,8 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $coordinates = OrderCoordinates::all();
-//        dd($coordinates);
+        $coordinates = OrderCoordinates::all()->whereNotNull('address_latitude');
         $orders = Order::all()->where('status',1);
         $completedOrdersAll = Order::all()->where('status',3)->take(10);
         $orderQuantity = Order::all()->count();
