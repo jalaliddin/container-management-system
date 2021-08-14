@@ -131,6 +131,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
+        $order->coordinate()->delete();
         $order->delete();
         return redirect()->route('order.index')
             ->with('message', 'O\'chirildi');
