@@ -155,9 +155,6 @@
     </div>
     <script type="text/javascript"
             src="https://maps.google.com/maps/api/js?key=AIzaSyDjebhPUM5ER3yiFDvN4uHoX8PlnYSrmuQ&sensor=false"></script>
-    <scritp>
-
-    </scritp>
     <script>
         window.onload = function () {
             var latlng = new google.maps.LatLng(41.3895, 60.3415);

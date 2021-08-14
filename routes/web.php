@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 
 Auth::routes(['register' => false]);
@@ -29,5 +29,6 @@ Route::get('/search/order', [App\Http\Controllers\OrderController::class, 'searc
 Route::get('/export/order', [App\Http\Controllers\OrderController::class, 'export'])->name('export.order')->middleware('auth');
 Route::post('/location/order/{id}', [App\Http\Controllers\OrderController::class, 'location'])->name('location.order')->middleware('auth');
 
+Route::post('/online/order', [App\Http\Controllers\OrderController::class, 'online'])->name('online.order');
 
 

@@ -207,4 +207,45 @@ class OrderController extends Controller
         return redirect()->back()->with('message', 'Yuborildi!');
     }
 
+    public function online(StoreOrderRequest $request)
+    {
+//        dd($request);
+        $order = Order::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'container_price' => $request->container_price,
+            'town' => $request->town,
+            'status' => $request->status,
+            'container_type' => $request->container_type,
+            'table_1' => $request->type_1,
+            'table_2' => $request->type_2,
+            'table_3' => $request->type_3,
+            'table_4' => $request->type_4,
+            'table_5' => $request->type_5,
+            'table_6' => $request->type_6,
+            'table_7' => $request->type_7,
+            'description' => $request->description,
+            'author' => 'online '.request()->ip()
+        ]);
+
+        $coordinates = new OrderCoordinates();
+        $coordinates->address_latitude = $request->lat;
+        $coordinates->address_longitude = $request->long;
+        $order->payments()->save($coordinates);
+
+        $text = "<b>⚡⚡ Online buyurtma</b> " . PHP_EOL . "
+        Buyurtmachi ismi: <b>$request->name</b> " . PHP_EOL . "
+        Buyurtmachi raqami: <b>$request->phone</b> " . PHP_EOL . "
+        Tuman/Shahar: <b>$request->town</b>";
+
+        Telegram::sendMessage([
+            'chat_id' => '-1001537663657',
+            'parse_mode' => 'HTML',
+            'text' => $text
+        ]);
+
+        return redirect()->back()
+            ->with('message', 'Ma\'lumotlar muvaffaqiyatli yuborildi!');
+    }
+
 }
