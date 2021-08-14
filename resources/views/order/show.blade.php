@@ -11,17 +11,26 @@
         <div class="row justify-content-center">
             <div class="col">
                 <div class="card">
-                    <div class="card-header"><span>ID: <b>{{$order->id}}</b></span> {{ __('Mijoz ma\'lumotlarini') }} <span><b>{{$order->author}}</b> kiritdi.</span>
+                    <div class="card-header"><span>ID: <b>{{$order->id}}</b></span> {{ __('Mijoz ma\'lumotlarini') }}
+                        <span><b>{{$order->author}}</b> kiritdi.</span>
                     </div>
                     <div class="container py-4">
-                        <a href="{{route('order.index')}}">
-                            <button type="button" class="btn btn-secondary btn-sm">Orqaga</button>
-                        </a>
-                        <form action="{{route('location.order', ['id' => $order->id])}}" method="post">
-                            @csrf
-                            <button type="submit" class="btn btn-success btn-sm float-right"><i class="fa fa-car"></i> Lokatsiya jo'natish</button>
-                        </form>
-                            <br>
+                        <div class="row">
+                            <div class="col">
+                                <a href="{{route('order.index')}}">
+                                    <button type="button" class="btn btn-secondary btn-sm">Orqaga</button>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <form action="{{route('location.order', ['id' => $order->id])}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success btn-sm float-right"><i
+                                            class="fa fa-car"></i> Lokatsiya jo'natish
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <br>
                         <br>
                         @if(Session::has('message'))
                             <div class="alert alert-success">{{Session::get('message')}}</div>
@@ -113,10 +122,13 @@
                                         </ol>
                                         @foreach($order->payments as $payment)
                                             <div class="card border-success mb-3 mx-auto" style="max-width: 18rem;">
-                                                <div class="card-header bg-transparent border-success">Kirim kartochkasi</div>
+                                                <div class="card-header bg-transparent border-success">Kirim
+                                                    kartochkasi
+                                                </div>
                                                 <div class="card-body text-success">
                                                     <h5 class="card-title">@money($payment->paid_price)</h5>
-                                                    <p class="card-text">{{$payment->payment_type}} orqali o'tkazilgan.</p>
+                                                    <p class="card-text">{{$payment->payment_type}} orqali
+                                                        o'tkazilgan.</p>
                                                 </div>
                                                 <div class="card-footer bg-transparent border-success">Sana:
                                                     {{$payment->payment_date}}
@@ -145,9 +157,10 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDjebhPUM5ER3yiFDvN4uHoX8PlnYSrmuQ&sensor=false"></script>
+    <script type="text/javascript"
+            src="https://maps.google.com/maps/api/js?key=AIzaSyDjebhPUM5ER3yiFDvN4uHoX8PlnYSrmuQ&sensor=false"></script>
     <script>
-        window.onload = function() {
+        window.onload = function () {
             var latlng = new google.maps.LatLng({!! json_encode($order->coordinate->address_latitude??'') !!}, {!! json_encode($order->coordinate->address_longitude??'') !!});
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: latlng,
@@ -160,7 +173,7 @@
                 title: 'Set lat/lon values for this property',
                 draggable: false
             });
-            google.maps.event.addListener(marker, 'dragend', function(a) {
+            google.maps.event.addListener(marker, 'dragend', function (a) {
                 console.log(a);
                 // var div = document.createElement('div');
                 // div.innerHTML = a.latLng.lat().toFixed(4) + ', ' + a.latLng.lng().toFixed(4);
