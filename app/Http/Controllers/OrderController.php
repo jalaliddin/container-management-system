@@ -225,7 +225,7 @@ class OrderController extends Controller
             'table_6' => $request->type_6,
             'table_7' => $request->type_7,
             'description' => $request->description,
-            'author' => 'online '.request()->ip()
+            'author' => 'Online '.request()->ip()
         ]);
 
         $coordinates = new OrderCoordinates();

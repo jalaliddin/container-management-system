@@ -428,22 +428,33 @@
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
         <div class="flex justify-center">
-            <img class="items-center" src="{{asset('img/logo.jpg')}}" width="200" height="200" alt="">
-        </div>
-        <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
+            <img class="items-center" src="{{asset('img/logo.jpg')}}" width="45" height="45" alt="">
+            &nbsp
+            &nbsp
             <h1 class="dark:text-white" class="display-1">StanTrip Containers</h1>
         </div>
+        <br>
+        <div class="flex justify-center">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/_b2BV_5ljI8"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+        <br>
         <div class="flex justify-center">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-warning text-center" data-toggle="modal" data-target="#onlineOrderModal">
+            <button type="button" class="btn btn-outline-warning text-center" data-toggle="modal"
+                    data-target="#onlineOrderModal">
                 Buyurtma berish
             </button>
             <!-- Modal -->
-            <div class="modal fade bd-example-modal-lg" id="onlineOrderModal" tabindex="-1" role="dialog" aria-labelledby="onlineOrderModalLabel" aria-hidden="true">
+            <div class="modal fade bd-example-modal-lg" id="onlineOrderModal" tabindex="-1" role="dialog"
+                 aria-labelledby="onlineOrderModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="onlineOrderModalLabel">Yengil tipdagi konstruksiyalarga onlayn buyurtma berish</h5>
+                            <h5 class="modal-title" id="onlineOrderModalLabel">Yengil tipdagi konstruksiyalarga onlayn
+                                buyurtma berish</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -554,11 +565,27 @@
                                 <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
                                           rows="3"></textarea>
                                 </div>
-                                <br>
-{{--                                <button type="submit" class="btn btn-success float-right">Saqlash</button>--}}
+                                Ma'lumot uchun:
+                                <p>
+                                <p>
+                                    <b>
+                                        +998 90 719 08 70
+                                    </b>
+                                </p>
+                                <p>
+                                    <b>
+                                        +998 99 240 08 70
+                                    </b>
+                                </p>
+                                    <br>
+                                    <br>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times-circle"></i> Yopish</button>
-                                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Jo'natish</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                                            class="fas fa-times-circle"></i> Yopish
+                                    </button>
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i>
+                                        Jo'natish
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -582,12 +609,12 @@
     @if(Session::has('message'))
         toastr.options =
         {
-            "closeButton" : true,
-            "progressBar" : true
+            "closeButton": true,
+            "progressBar": true
         }
     toastr.success("{{ session('message') }}");
     @endif
-    window.onload = function () {
+        window.onload = function () {
         var latlng = new google.maps.LatLng(41.3895, 60.3415);
         var map = new google.maps.Map(document.getElementById('map'), {
             center: latlng,
