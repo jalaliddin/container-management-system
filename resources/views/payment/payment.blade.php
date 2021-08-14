@@ -19,7 +19,7 @@
                             </ul>
                         @endif
                         <a href="{{route('payment.create')}}">
-                            <button type="button" class="btn btn-primary float-right">Yangi to'lov</button>
+                            <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Yangi to'lov</button>
                         </a>
                         <br>
                         <br>
@@ -74,13 +74,13 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                    Yopish
+                                                    <i class="fas fa-times-circle"></i> Yopish
                                                 </button>
                                                 <form action="{{ route('payment.destroy',$payment->id) }}"
                                                       method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Tasdiqlayman</button>
+                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Tasdiqlayman</button>
                                                 </form>
                                             </div>
                                         </div>

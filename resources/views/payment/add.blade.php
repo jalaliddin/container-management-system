@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('To\'lovni kiritish') }}</div>
                     <div class="container py-4">
                         <a href="{{route('payment.index')}}">
-                            <button type="button" class="btn btn-secondary btn-sm">Orqaga</button>
+                            <button type="button" class="btn btn-secondary btn-sm"><i class="fas fa-arrow-left"></i> Orqaga</button>
                         </a>
                         <br>
                         <br>

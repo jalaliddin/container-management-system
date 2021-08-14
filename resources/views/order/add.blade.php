@@ -14,7 +14,7 @@
                     <div class="card-header">{{ __('Buyurtma kiritish') }}</div>
                     <div class="container py-4">
                         <a href="{{route('order.index')}}">
-                            <button type="button" class="btn btn-secondary btn-sm">Orqaga</button>
+                            <button type="button" class="btn btn-secondary btn-sm"><i class="fas fa-arrow-left"></i> Orqaga</button>
                         </a>
                         <br>
                         <br>

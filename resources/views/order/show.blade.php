@@ -18,7 +18,7 @@
                         <div class="row">
                             <div class="col">
                                 <a href="{{route('order.index')}}">
-                                    <button type="button" class="btn btn-secondary btn-sm">Orqaga</button>
+                                    <button type="button" class="btn btn-secondary btn-sm"><i class="fas fa-arrow-left"></i> Orqaga</button>
                                 </a>
                             </div>
                             <div class="col">

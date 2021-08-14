@@ -21,8 +21,8 @@
                             <div class="row">
                                 <div class="col-9">
                                     <form action="{{route('orders.search')}}" method="get">
-                                        <input  name="q" type="text" placeholder="ism bo'yicha qidirish"/>
-                                        <input  name="phone" type="number" placeholder="telefon raqam bo'yicha qidirish"/>
+                                        <input  name="q" type="text" placeholder="Ism bo'yicha qidirish"/>
+                                        <input  name="phone" type="number" placeholder="Telefon raqam bo'yicha qidirish"/>
                                         <select id="statusDropdown" name="status">
                                             <option value="">Hammasi</option>
                                             <option value="1">Faol</option>
@@ -45,16 +45,16 @@
                                             <option value="Yangibozor">Yangibozor</option>
                                             <option value="none">none</option>
                                         </select>
-                                        <button class="btn-secondary btn" type="submit">Izlash</button>
+                                        <button class="btn-secondary btn" type="submit"><i class="fas fa-search"></i> Izlash</button>
                                     </form>
                                 </div>
                                 <div class="col-3">
-                                    <div class="btn-toolbar pull-right">
+                                    <div class="btn-toolbar">
                                         <a href="{{route('export.order')}}">
-                                            <button type="button" class="btn btn-success mr-3">Excel</button>
+                                            <button type="button" class="btn btn-success mr-3"><i class="fas fa-file-excel"></i> Excel</button>
                                         </a>
                                         <a href="{{route('order.create')}}">
-                                            <button type="button" class="btn btn-primary mr-3">Yangi buyurtma</button>
+                                            <button type="button" class="btn btn-primary mr-3"><i class="fas fa-plus"></i>Yangi buyurtma</button>
                                         </a>
                                     </div>
                                 </div>
@@ -123,12 +123,12 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                    Yopish
+                                                    <i class="fas fa-times-circle"></i> Yopish
                                                 </button>
                                                 <form action="{{ route('order.destroy',$order->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Tasdiqlayman</button>
+                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Tasdiqlayman</button>
                                                 </form>
                                             </div>
                                         </div>
