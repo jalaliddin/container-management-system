@@ -9,6 +9,7 @@ use App\Models\OrderCoordinates;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 class OrderController extends Controller
 {
@@ -64,6 +65,17 @@ class OrderController extends Controller
         $coordinates->address_latitude = $request->lat;
         $coordinates->address_longitude = $request->long;
         $order->payments()->save($coordinates);
+
+        $text = "<b>⚡ Yangi buyurtma</b> ".PHP_EOL."
+        Buyurtmachi ismi: <b>$request->name</b> ".PHP_EOL."
+        Buyurtmachi raqami: <b>$request->phone</b> ".PHP_EOL."
+        Tuman/Shahar: <b>$request->town</b>";
+
+        Telegram::sendMessage([
+            'chat_id' => '-1001537663657',
+            'parse_mode' => 'HTML',
+            'text' => $text
+        ]);
 
         return redirect()->route('order.index')
             ->with('message', 'Ma\'lumotlar muvaffaqiyatli saqlandi!');
@@ -169,6 +181,29 @@ class OrderController extends Controller
     public function export()
     {
         return Excel::download(new OrdersExport, 'buyurtmalar.xlsx');
+    }
+
+    public function location($id)
+    {
+        $order = Order::find($id);
+        $firstText = "⚡ Yangi joylashuv <b>$order->town</b>ga ".PHP_EOL."
+        Ism: <b>$order->name</b> ".PHP_EOL."
+        Raqami: <b>$order->phone</b> ".PHP_EOL."
+        ";
+        if(is_null($order->coordinate->address_longitude)){
+            return redirect()->back()->with('notsent', 'Xatolik tufayli xabar yuborilmadi!');
+        }
+        Telegram::sendMessage([
+            'chat_id' => '-1001537663657',
+            'parse_mode' => 'HTML',
+            'text' => $firstText
+        ]);
+        Telegram::sendLocation([
+            'chat_id' => '-1001537663657',
+            'longitude' => $order->coordinate->address_longitude,
+            'latitude' => $order->coordinate->address_latitude
+        ]);
+        return redirect()->back()->with('message', 'Yuborildi!');
     }
 
 }

@@ -27,6 +27,7 @@ Route::resource('setting', \App\Http\Controllers\SettingController::class);
 
 Route::get('/search/order', [App\Http\Controllers\OrderController::class, 'search'])->name('orders.search');
 Route::get('/export/order', [App\Http\Controllers\OrderController::class, 'export'])->name('export.order')->middleware('auth');
+Route::post('/location/order/{id}', [App\Http\Controllers\OrderController::class, 'location'])->name('location.order')->middleware('auth');
 
 //Route::resource('order', 'OrderController', ['names' => [
 //    'index' => 'order'

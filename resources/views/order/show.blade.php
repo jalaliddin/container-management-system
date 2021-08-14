@@ -17,10 +17,17 @@
                         <a href="{{route('order.index')}}">
                             <button type="button" class="btn btn-secondary btn-sm">Orqaga</button>
                         </a>
-                        <br>
+                        <form action="{{route('location.order', ['id' => $order->id])}}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-success btn-sm float-right"><i class="fa fa-car"></i> Lokatsiya jo'natish</button>
+                        </form>
+                            <br>
                         <br>
                         @if(Session::has('message'))
                             <div class="alert alert-success">{{Session::get('message')}}</div>
+                        @endif
+                        @if(Session::has('notsent'))
+                            <div class="alert alert-danger">{{Session::get('notsent')}}</div>
                         @endif
                         @if(count($errors)>0)
 
