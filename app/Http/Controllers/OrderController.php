@@ -189,7 +189,7 @@ class OrderController extends Controller
         ";
 
         if (is_null($order->coordinate->address_longitude)) {
-            return redirect()->back()->with('notsent', 'Xatolik tufayli xabar yuborilmadi!');
+            return redirect()->back()->with('notsent', 'Ushbu buyurtma uchun manzil (lokatsiya) kiritilmagan!');
         }
 
         Telegram::sendMessage([
