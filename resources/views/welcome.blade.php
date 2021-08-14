@@ -469,7 +469,7 @@
                                 </div>
                                 <div class="form-group">
                                     <span>+998</span><input type="number" class="form-control" id="phone" minlength="9"
-                                                            name="phone" placeholder="Telefon raqami" required>
+                                                            name="phone" placeholder="Telefon raqami">
                                 </div>
                                 <input hidden readonly type="number" id="number" value="0.00" name="container_price">
                                 <b>Konteynerning kelajakdagi joylashuvini tanlang.</b>
@@ -577,8 +577,8 @@
                                         +998 99 240 08 70
                                     </b>
                                 </p>
-                                    <br>
-                                    <br>
+                                <br>
+                                <br>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
                                             class="fas fa-times-circle"></i> Yopish
@@ -613,6 +613,17 @@
             "progressBar": true
         }
     toastr.success("{{ session('message') }}");
+    @endif
+
+    @if(count($errors)>0)
+    @foreach($errors->all() as $error)
+    toastr.options =
+    {
+        "closeButton": true,
+        "progressBar": true
+    }
+    toastr.warning("{{ $error }}");
+    @endforeach
     @endif
         window.onload = function () {
         var latlng = new google.maps.LatLng(41.3895, 60.3415);
