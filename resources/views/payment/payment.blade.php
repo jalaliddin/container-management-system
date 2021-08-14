@@ -18,14 +18,11 @@
                                 @endforeach
                             </ul>
                         @endif
-{{--                        <span>Izlash:</span>--}}
-{{--                        <p><input type="text" id="myInput" onkeyup="myFunction()"--}}
-{{--                                  placeholder="Ism orqali izlash">--}}
-                            <a href="{{route('payment.create')}}">
-                                <button type="button" class="btn btn-primary float-right">Yangi to'lov</button>
-                            </a>
-                            <br>
-                            <br>
+                        <a href="{{route('payment.create')}}">
+                            <button type="button" class="btn btn-primary float-right">Yangi to'lov</button>
+                        </a>
+                        <br>
+                        <br>
                         <table class="table table-striped table-hover" id="orderTable">
                             <thead>
                             <tr>
@@ -70,7 +67,8 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Haqiqatdan ham ushbu <b>{{$payment->order->name ?? 'Buyurtma o\'chirilgan'}}</b> buyurtmasini
+                                                Haqiqatdan ham ushbu
+                                                <b>{{$payment->order->name ?? 'Buyurtma o\'chirilgan'}}</b> buyurtmasini
                                                 o'chirishni
                                                 tasdiqlaysizmi?
                                             </div>
@@ -91,33 +89,10 @@
                             @endforeach
                             </tbody>
                         </table>
-                            {{ $payments->links() }}
+                        {{ $payments->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        function myFunction() {
-            // Declare variables
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("orderTable");
-            tr = table.getElementsByTagName("tr");
-
-            // Loop through all table rows, and hide those who don't match the search query
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
 @endsection

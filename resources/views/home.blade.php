@@ -74,25 +74,25 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                    <div id="map"></div>
+                                <div id="map"></div>
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col">
-                                    <div class="card border-primary mb-3" style="max-width: 18rem;">
-                                        <div class="card-header">Faol shahar/tumanlar</div>
-                                        <div class="card-body text-primary">
-                                            <h5 class="card-title"></h5>
-                                            <p class="card-text">
-                                            <ol>
-                                                @foreach($sortedTowns as $town)
-                                                    <li><b>{{$town['town'] }}</b> - {{$town['count']}} ta buyurtma</li>
-                                                @endforeach
-                                            </ol>
-                                            </p>
-                                        </div>
+                                <div class="card border-primary mb-3" style="max-width: 18rem;">
+                                    <div class="card-header">Faol shahar/tumanlar</div>
+                                    <div class="card-body text-primary">
+                                        <h5 class="card-title"></h5>
+                                        <p class="card-text">
+                                        <ol>
+                                            @foreach($sortedTowns as $town)
+                                                <li><b>{{$town['town'] }}</b> - {{$town['count']}} ta buyurtma</li>
+                                            @endforeach
+                                        </ol>
+                                        </p>
                                     </div>
+                                </div>
                             </div>
                             <div class="col">
                                 <div class="card border-primary mb-3" style="max-width: 18rem;">
@@ -138,11 +138,11 @@
         function initMap() {
             var center = {lat: 41.3565, lng: 60.8567};
             var locations = [
-                @foreach($coordinates as $coordinate)
+                    @foreach($coordinates as $coordinate)
                 ['Ism: {{$coordinate->order->name}} <br>\
     Tel.: {{$coordinate->order->phone}}<br>\
    <a href="{{route('order.show',$coordinate->order->id)}}">Batafsil ko\'rish</a>', {{$coordinate->address_latitude}}, {{$coordinate->address_longitude}}],
-                    @endforeach
+                @endforeach
             ];
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 9,

@@ -42,7 +42,6 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-//        dd($request);
         $order = Order::create([
             'name' => $request->name,
             'phone' => $request->phone,
@@ -66,9 +65,9 @@ class OrderController extends Controller
         $coordinates->address_longitude = $request->long;
         $order->payments()->save($coordinates);
 
-        $text = "<b>⚡ Yangi buyurtma</b> ".PHP_EOL."
-        Buyurtmachi ismi: <b>$request->name</b> ".PHP_EOL."
-        Buyurtmachi raqami: <b>$request->phone</b> ".PHP_EOL."
+        $text = "<b>⚡ Yangi buyurtma</b> " . PHP_EOL . "
+        Buyurtmachi ismi: <b>$request->name</b> " . PHP_EOL . "
+        Buyurtmachi raqami: <b>$request->phone</b> " . PHP_EOL . "
         Tuman/Shahar: <b>$request->town</b>";
 
         Telegram::sendMessage([
@@ -90,7 +89,6 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::find($id);
-//        dd($order->coordinate);
         return view('order.show', compact('order'));
     }
 
@@ -145,37 +143,36 @@ class OrderController extends Controller
     {
         $order->coordinate()->delete();
         $order->delete();
+
         return redirect()->route('order.index')
             ->with('message', 'O\'chirildi');
     }
 
     public function search(Request $request)
     {
-
         $orders = Order::orderBy('created_at', 'desc');
 
-        if(!empty(request('q'))){
-            $query= $request->q;
+        if (!empty(request('q'))) {
+            $query = $request->q;
             $orders = Order::where('name', 'LIKE', '%' . $query . '%');
         }
 
-        if(!empty(request('phone'))){
-            $query= $request->phone;
+        if (!empty(request('phone'))) {
+            $query = $request->phone;
             $orders = Order::where('phone', 'LIKE', '%' . $query . '%');
         }
 
-        if (!empty(request('status'))){
-            $orders = Order::where('status',$request->status);
+        if (!empty(request('status'))) {
+            $orders = Order::where('status', $request->status);
         }
 
-        if (!empty(request('town'))){
-            $orders = Order::where('town',$request->town);
+        if (!empty(request('town'))) {
+            $orders = Order::where('town', $request->town);
         }
 
         $orders = $orders->paginate(10);
 
-        return view('order.order',compact('orders'));
-
+        return view('order.order', compact('orders'));
     }
 
     public function export()
@@ -186,23 +183,27 @@ class OrderController extends Controller
     public function location($id)
     {
         $order = Order::find($id);
-        $firstText = "⚡ Yangi joylashuv <b>$order->town</b>ga ".PHP_EOL."
-        Ism: <b>$order->name</b> ".PHP_EOL."
-        Raqami: <b>$order->phone</b> ".PHP_EOL."
+        $firstText = "⚡ Yangi joylashuv <b>$order->town</b>ga " . PHP_EOL . "
+        Ism: <b>$order->name</b> " . PHP_EOL . "
+        Raqami: <b>$order->phone</b> " . PHP_EOL . "
         ";
-        if(is_null($order->coordinate->address_longitude)){
+
+        if (is_null($order->coordinate->address_longitude)) {
             return redirect()->back()->with('notsent', 'Xatolik tufayli xabar yuborilmadi!');
         }
+
         Telegram::sendMessage([
             'chat_id' => '-1001537663657',
             'parse_mode' => 'HTML',
             'text' => $firstText
         ]);
+
         Telegram::sendLocation([
             'chat_id' => '-1001537663657',
             'longitude' => $order->coordinate->address_longitude,
             'latitude' => $order->coordinate->address_latitude
         ]);
+
         return redirect()->back()->with('message', 'Yuborildi!');
     }
 

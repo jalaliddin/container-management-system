@@ -26,7 +26,7 @@ class StoreOrderRequest extends FormRequest
         return [
             'name' => 'required',
             'phone' => 'required',
-            'container_price' =>'required',
+            'container_price' => 'required',
             'town' => 'required',
             'status' => 'required',
             'container_type' => 'required',

@@ -16,7 +16,6 @@
                             <div class="alert alert-success">{{Session::get('message')}}</div>
                         @endif
                         @if(count($errors)>0)
-
                             <ul>
                                 @foreach($errors->all() as $error)
                                     <li class="alert alert-danger">{{$error}}</li>
@@ -47,7 +46,8 @@
                             <div class="form-group">
                                 <b>To'lov summasi:</b>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="price-input"  name="container_price_format" placeholder="To'lov summasi">
+                                    <input type="text" class="form-control" id="price-input"
+                                           name="container_price_format" placeholder="To'lov summasi">
                                 </div>
                             </div>
                             <input hidden readonly type="number" id="number" name="paid_price">
@@ -65,7 +65,7 @@
         </div>
     </div>
     <script>
-        document.getElementById("price-input").onblur =function (){
+        document.getElementById("price-input").onblur = function () {
 
             //number-format the user input
             this.value = parseFloat(this.value.replace(/,/g, ""))

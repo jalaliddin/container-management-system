@@ -26,38 +26,41 @@ class HomeController extends Controller
     public function index()
     {
         $coordinates = OrderCoordinates::all()->whereNotNull('address_latitude');
-        $orders = Order::all()->where('status',1);
-        $completedOrdersAll = Order::all()->where('status',3)->take(10);
+        $orders = Order::all()->where('status', 1);
+        $completedOrdersAll = Order::all()->where('status', 3)->take(10);
         $orderQuantity = Order::all()->count();
-        $ordersName = Order::all()->where('status',1)->take(10);
+        $ordersName = Order::all()->where('status', 1)->take(10);
         $activeOrders = Order::all()->where('status', '1')->count();
         $passiveOrders = Order::all()->where('status', '2')->count();
         $completedOrders = Order::all()->where('status', '3')->count();
-        $topTowns = Order::all()
-            ->groupBy('town');
+        $topTowns = Order::all()->groupBy('town');
         $sumContainerPrice = Order::all()->sum('container_price');
         $sumPayments = Payment::all()->sum('paid_price');
+
         $creditSum = $sumContainerPrice - $sumPayments;
-        foreach ($topTowns as $town => $data){
+
+        foreach ($topTowns as $town => $data) {
             $modifiedTowns[] = [
                 'town' => $town,
                 'count' => count($data)
             ];
         }
-        if (isset($modifiedTowns)){
+
+        if (isset($modifiedTowns)) {
             $collectedTowns = collect($modifiedTowns);
             $sortedTowns = $collectedTowns->sortByDesc('count');
-        }else{
+        } else {
             $sortedTowns[] = [
                 'town' => 'text',
                 'count' => 'count'
             ];
         }
+
         return view('home', compact(
             'orderQuantity', 'activeOrders',
             'passiveOrders', 'completedOrders', 'sortedTowns',
-            'sumContainerPrice','sumPayments', 'creditSum',
-            'orders','completedOrdersAll','ordersName', 'coordinates'
+            'sumContainerPrice', 'sumPayments', 'creditSum',
+            'orders', 'completedOrdersAll', 'ordersName', 'coordinates'
         ));
     }
 }

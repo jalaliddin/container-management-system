@@ -29,7 +29,8 @@
                             <div class="form-group">
                                 <select class="custom-select" name="payment_type">
                                     @if($payment->payment_type)
-                                        <option value="{{$payment->payment_type}}" selected>{{$payment->payment_type}}</option>
+                                        <option value="{{$payment->payment_type}}"
+                                                selected>{{$payment->payment_type}}</option>
                                     @endif
                                     <option value="Bank orqali">Bank orqali</option>
                                     <option value="Kredit">Kredit</option>
@@ -47,10 +48,13 @@
                             <div class="form-group">
                                 <b>To'lov summasi:</b>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="price-input"  name="container_price_format" placeholder="To'lov summasi" value="{{$payment->paid_price}}">
+                                    <input type="text" class="form-control" id="price-input"
+                                           name="container_price_format" placeholder="To'lov summasi"
+                                           value="{{$payment->paid_price}}">
                                 </div>
                             </div>
-                            <input hidden readonly type="number" id="number" name="paid_price" value="{{$payment->paid_price}}">
+                            <input hidden readonly type="number" id="number" name="paid_price"
+                                   value="{{$payment->paid_price}}">
                             <div class="form-group">
                                 <b>To'lov sanasi:</b>
                                 <input name="payment_date" type="date" id="start" name="date"
@@ -65,7 +69,7 @@
         </div>
     </div>
     <script>
-        document.getElementById("price-input").onblur =function (){
+        document.getElementById("price-input").onblur = function () {
 
             //number-format the user input
             this.value = parseFloat(this.value.replace(/,/g, ""))

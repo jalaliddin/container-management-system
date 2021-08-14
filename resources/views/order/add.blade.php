@@ -32,14 +32,17 @@
                         <form action="{{route('order.store')}}" method="post" class="">
                             @csrf
                             <div class="form-group">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Ism va Familiya">
+                                <input type="text" class="form-control" id="name" name="name"
+                                       placeholder="Ism va Familiya">
                             </div>
                             <div class="form-group">
-                                <span>+998</span><input type="number" class="form-control" id="phone" minlength="9" name="phone" placeholder="Telefon raqami" required>
+                                <span>+998</span><input type="number" class="form-control" id="phone" minlength="9"
+                                                        name="phone" placeholder="Telefon raqami" required>
                             </div>
                             <b>Konteyner summasi:</b>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="price-input"  name="container_price_format" placeholder="Konteyner summasi" value="0.00">
+                                <input type="text" class="form-control" id="price-input" name="container_price_format"
+                                       placeholder="Konteyner summasi" value="0.00">
                             </div>
                             <input hidden readonly type="number" id="number" value="0.00" name="container_price">
                             <b>Konteynerning kelajakdagi joylashuvini tanlang.</b>
@@ -48,7 +51,6 @@
                             </div>
                             <input hidden readonly type="text" id="lat" value="" name="lat">
                             <input hidden readonly type="text" id="long" value="" name="long">
-
                             <b>Shahar/Tumanni tanlang:</b>
                             <div class="form-group">
                                 <select class="custom-select" name="town">
@@ -66,9 +68,6 @@
                                     <option value="Yangibozor">Yangibozor</option>
                                     <option value="none">none</option>
                                 </select>
-                            </div>
-                            <div class="form-group">
-
                             </div>
                             <b>Holati:</b>
                             <div class="form-group">
@@ -143,7 +142,8 @@
                             </div>
                             <b>Заметка:</b>
                             <div class="form-group">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+                                          rows="3"></textarea>
                             </div>
                             <br>
                             <button type="submit" class="btn btn-success float-right">Saqlash</button>
@@ -153,12 +153,13 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDjebhPUM5ER3yiFDvN4uHoX8PlnYSrmuQ&sensor=false"></script>
+    <script type="text/javascript"
+            src="https://maps.google.com/maps/api/js?key=AIzaSyDjebhPUM5ER3yiFDvN4uHoX8PlnYSrmuQ&sensor=false"></script>
     <scritp>
 
     </scritp>
     <script>
-        window.onload = function() {
+        window.onload = function () {
             var latlng = new google.maps.LatLng(41.3895, 60.3415);
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: latlng,
@@ -171,16 +172,13 @@
                 title: 'Set lat/lon values for this property',
                 draggable: true
             });
-            google.maps.event.addListener(marker, 'dragend', function(a) {
+            google.maps.event.addListener(marker, 'dragend', function (a) {
                 console.log(a);
-                // var div = document.createElement('div');
-                // div.innerHTML = a.latLng.lat().toFixed(4) + ', ' + a.latLng.lng().toFixed(4);
-                // document.getElementsByTagName('body')[0].appendChild(div);
                 document.getElementById("lat").value = a.latLng.lat().toFixed(4);
                 document.getElementById("long").value = a.latLng.lng().toFixed(4)
             });
         };
-        document.getElementById("price-input").onblur =function (){
+        document.getElementById("price-input").onblur = function () {
 
             //number-format the user input
             this.value = parseFloat(this.value.replace(/,/g, ""))

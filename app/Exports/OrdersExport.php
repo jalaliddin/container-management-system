@@ -9,8 +9,8 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 class OrdersExport implements FromCollection, WithHeadings
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
         return Order::all();
@@ -18,7 +18,8 @@ class OrdersExport implements FromCollection, WithHeadings
 
     public function headings(): array
     {
-        return ["id",
+        return [
+            "id",
             "Ism va familiya",
             "Telefon raqami",
             "Shahar/Tuman",

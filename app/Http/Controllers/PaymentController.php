@@ -17,7 +17,7 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = Payment::orderBy('created_at', 'desc')->paginate(10);
-        return view('payment.payment',compact('payments'));
+        return view('payment.payment', compact('payments'));
     }
 
     /**
@@ -28,14 +28,13 @@ class PaymentController extends Controller
     public function create()
     {
         $orders = Order::all()->sortByDesc('created_at');
-
-        return view('payment.add',compact('orders'));
+        return view('payment.add', compact('orders'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(StorePaymentRequest $request)
@@ -47,6 +46,7 @@ class PaymentController extends Controller
         $payment->paid_price = $request->paid_price;
         $payment->payment_date = $request->payment_date;
         $order = $order->payments()->save($payment);
+
         return redirect()->route('payment.index')
             ->with('message', 'Ma\'lumotlar muvaffaqiyatli saqlandi!');
     }
@@ -54,19 +54,18 @@ class PaymentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-//        $payment = Payment::find($id);
-//        return view('payment.show',compact('payment'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -78,8 +77,8 @@ class PaymentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(StorePaymentRequest $request, $id)
@@ -90,13 +89,14 @@ class PaymentController extends Controller
         $payment->paid_price = $request->paid_price;
         $payment->payment_date = $request->payment_date;
         $payment->save();
+
         return redirect('/payment')->with('message', 'Contact updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Payment $payment)

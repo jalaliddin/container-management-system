@@ -16,7 +16,6 @@
                             <div class="alert alert-success">{{Session::get('message')}}</div>
                         @endif
                         @if(count($errors)>0)
-
                             <ul>
                                 @foreach($errors->all() as $error)
                                     <li class="alert alert-danger">{{$error}}</li>
@@ -27,16 +26,21 @@
                             @method('PATCH')
                             @csrf
                             <div class="form-group">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Ism va Familiya" value="{{$order->name}}">
+                                <input type="text" class="form-control" id="name" name="name"
+                                       placeholder="Ism va Familiya" value="{{$order->name}}">
                             </div>
                             <div class="form-group">
-                                <span>+998</span><input type="number" class="form-control" id="phone" minlength="9" name="phone" placeholder="Telefon raqami" value="{{$order->phone}}">
+                                <span>+998</span><input type="number" class="form-control" id="phone" minlength="9"
+                                                        name="phone" placeholder="Telefon raqami"
+                                                        value="{{$order->phone}}">
                             </div>
                             <b>Konteyner summasi:</b>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="price-input"  name="container_price_format" placeholder="Konteyner summasi" value="{{$order->container_price}}">
+                                <input type="text" class="form-control" id="price-input" name="container_price_format"
+                                       placeholder="Konteyner summasi" value="{{$order->container_price}}">
                             </div>
-                            <input hidden readonly type="number" id="number" name="container_price" value="{{$order->container_price}}">
+                            <input hidden readonly type="number" id="number" name="container_price"
+                                   value="{{$order->container_price}}">
                             <div class="form-group">
                             </div>
                             <b>Shahar/Tumanni tanlang:</b>
@@ -64,7 +68,10 @@
                             <div class="form-group">
                                 <select class="custom-select" name="status">
                                     @if($order->status)
-                                        <option value="{{$order->status}}" selected>@if($order->status==1)<font color="blue">{{'Faol'}}</font>@elseif($order->status==2)<font color="red">{{'Bekor qilingan'}}</font>@elseif($order->status==3)<font color="green">{{'Tayyor'}}</font>@endif</option>
+                                        <option value="{{$order->status}}" selected>@if($order->status==1)<font
+                                                color="blue">{{'Faol'}}</font>@elseif($order->status==2)<font
+                                                color="red">{{'Bekor qilingan'}}</font>@elseif($order->status==3)<font
+                                                color="green">{{'Tayyor'}}</font>@endif</option>
                                     @endif
                                     <option value="1">Faol</option>
                                     <option value="2">Bekor qilingan</option>
@@ -75,7 +82,8 @@
                             <div class="form-group">
                                 <select class="custom-select" name="container_type">
                                     @if($order->container_type)
-                                        <option value="{{$order->container_type}}" selected>{{$order->container_type}}</option>
+                                        <option value="{{$order->container_type}}"
+                                                selected>{{$order->container_type}}</option>
                                     @endif
                                     <option value="4X3">4X3</option>
                                     <option value="5X3">5X3</option>
@@ -160,7 +168,8 @@
                             </div>
                             <b>Заметка:</b>
                             <div class="form-group">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3">{{$order->description}}</textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+                                          rows="3">{{$order->description}}</textarea>
                             </div>
                             <br>
                             <button type="submit" class="btn btn-warning float-right">Yangilash</button>
@@ -171,7 +180,7 @@
         </div>
     </div>
     <script>
-        document.getElementById("price-input").onblur =function (){
+        document.getElementById("price-input").onblur = function () {
 
             //number-format the user input
             this.value = parseFloat(this.value.replace(/,/g, ""))
