@@ -443,7 +443,7 @@
         <br>
         <div class="flex justify-center">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-warning text-center" data-toggle="modal"
+            <button type="button" class="btn btn-outline-success text-center" data-toggle="modal"
                     data-target="#onlineOrderModal">
                 Buyurtma berish
             </button>
