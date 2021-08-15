@@ -128,7 +128,7 @@ class OrderController extends Controller
         $order->table_6 = $request->type_6;
         $order->table_7 = $request->type_7;
         $order->description = $request->description;
-        $order->author = Auth::user()->name;
+//        $order->author = Auth::user()->name;
         $order->save();
         return redirect('/order')->with('message', 'Contact updated!');
     }
