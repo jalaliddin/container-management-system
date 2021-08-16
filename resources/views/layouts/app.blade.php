@@ -49,6 +49,7 @@
                         <a class="nav-link {{ Route::is('payment.index') ? 'active' : '' }}"
                            href="{{route('payment.index')}}">To'lovlar</a>
                     </li>
+                    @role('Super-Admin')
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -64,11 +65,12 @@
                             </a>
                         </div>
                     </li>
-
-{{--                    <li class="nav-item">--}}
-{{--                        <a class="nav-link {{ Route::is('setting.index') ? 'active' : '' }} disabled"--}}
-{{--                           href="{{route('setting.index')}}">Sozlamalar</a>--}}
-{{--                    </li>--}}
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::is('setting.index') ? 'active' : '' }} disabled"
+                               href="{{route('setting.index')}}">Sozlamalar</a>
+                        </li>
+                        @endrole
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
