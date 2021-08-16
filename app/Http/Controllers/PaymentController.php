@@ -9,6 +9,15 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:edit payments|delete payments|create payments|read payments', ['only' => ['index','show']]);
+        $this->middleware('permission:create payments', ['only' => ['create','store']]);
+        $this->middleware('permission:edit payments', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete payments', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

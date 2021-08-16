@@ -21,14 +21,21 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('order', \App\Http\Controllers\OrderController::class)->middleware('auth');
-Route::resource('payment', \App\Http\Controllers\PaymentController::class)->middleware('auth');
-Route::resource('setting', \App\Http\Controllers\SettingController::class);
 
-Route::get('/search/order', [App\Http\Controllers\OrderController::class, 'search'])->name('orders.search');
-Route::get('/export/order', [App\Http\Controllers\OrderController::class, 'export'])->name('export.order')->middleware('auth');
-Route::post('/location/order/{id}', [App\Http\Controllers\OrderController::class, 'location'])->name('location.order')->middleware('auth');
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('order', \App\Http\Controllers\OrderController::class);
+    Route::resource('payment', \App\Http\Controllers\PaymentController::class);
+    Route::resource('setting', \App\Http\Controllers\SettingController::class);
+    Route::get('/search/order', [App\Http\Controllers\OrderController::class, 'search'])->name('orders.search');
+    Route::get('/export/order', [App\Http\Controllers\OrderController::class, 'export'])->name('export.order');
+    Route::post('/location/order/{id}', [App\Http\Controllers\OrderController::class, 'location'])->name('location.order');
+    Route::resource('roles', \App\Http\Controllers\RoleController::class);
+    Route::resource('users', \App\Http\Controllers\UserController::class);
+});
 
 Route::post('/online/order', [App\Http\Controllers\OrderController::class, 'online'])->name('online.order');
+
+
+
 
 

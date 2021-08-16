@@ -13,6 +13,15 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 
 class OrderController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:edit orders|delete orders|create orders|read orders', ['only' => ['index','show']]);
+        $this->middleware('permission:create orders', ['only' => ['create','store']]);
+        $this->middleware('permission:edit orders', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete orders', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

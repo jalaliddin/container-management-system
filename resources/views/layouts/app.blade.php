@@ -49,10 +49,26 @@
                         <a class="nav-link {{ Route::is('payment.index') ? 'active' : '' }}"
                            href="{{route('payment.index')}}">To'lovlar</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Route::is('setting.index') ? 'active' : '' }} disabled"
-                           href="{{route('setting.index')}}">Sozlamalar</a>
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{__('Sozlamalar')}}
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('users.index') }}">
+                                {{ __('Foydalanuvchilarni boshqarish') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('roles.index') }}">
+                                {{ __('Ruxsatlar') }}
+                            </a>
+                        </div>
                     </li>
+
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link {{ Route::is('setting.index') ? 'active' : '' }} disabled"--}}
+{{--                           href="{{route('setting.index')}}">Sozlamalar</a>--}}
+{{--                    </li>--}}
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

@@ -18,8 +18,6 @@ class CreatePaymentsTable extends Migration
             $table->integer('order_id');
             $table->string('payment_type');
             $table->string('pay_type');
-            $table->float('container_price');
-            $table->float('paid_price');
             $table->date('payment_date');
             $table->timestamps();
         });
