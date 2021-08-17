@@ -16,9 +16,9 @@ class OrderController extends Controller
 
     public function __construct()
     {
-        $this->middleware('permission:edit orders|delete orders|create orders|read orders', ['only' => ['index','show']]);
-        $this->middleware('permission:create orders', ['only' => ['create','store']]);
-        $this->middleware('permission:edit orders', ['only' => ['edit','update']]);
+        $this->middleware('permission:edit orders|delete orders|create orders|read orders', ['only' => ['index', 'show']]);
+        $this->middleware('permission:create orders', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit orders', ['only' => ['edit', 'update']]);
         $this->middleware('permission:delete orders', ['only' => ['destroy']]);
     }
 
@@ -234,7 +234,7 @@ class OrderController extends Controller
             'table_6' => $request->type_6,
             'table_7' => $request->type_7,
             'description' => $request->description,
-            'author' => 'Online '.request()->ip()
+            'author' => 'Online ' . request()->ip()
         ]);
 
         $coordinates = new OrderCoordinates();
@@ -255,6 +255,29 @@ class OrderController extends Controller
 
         return redirect()->back()
             ->with('message', 'Ma\'lumotlar muvaffaqiyatli yuborildi!');
+    }
+
+    public function agreement($id)
+    {
+        $order = Order::find($id);
+
+        if (!$order) {
+            return redirect()->back()->with('message', 'Ma\'lumot topilmadi!');
+        }
+
+        $file = public_path('docs/agreement.docx');
+
+        $phpword = new \PhpOffice\PhpWord\TemplateProcessor($file);
+
+        $phpword->setValue('{docNumber}', $order->id);
+        $phpword->setValue('{name}', $order->name);
+        $phpword->setValue('{containerPrice}', number_format($order->container_price, 2) . ' so\'m');
+        $phpword->setValue('{phone}', $order->phone);
+        $phpword->setValue('{town}', $order->town);
+
+        $phpword->saveAs(public_path('docs/' . $order->id . '_' . $order->name . '_agreement.docx'));
+
+        return response()->download(public_path('docs/' . $order->id . '_' . $order->name . '_agreement.docx'));
     }
 
 }

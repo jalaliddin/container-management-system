@@ -28,6 +28,12 @@
                                             class="fa fa-car"></i> Lokatsiya jo'natish
                                     </button>
                                 </form>
+                                <form action="{{route('generate.agreement', ['id' => $order->id])}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success btn-sm float-right mr-2"><i
+                                            class="fas fa-file-word"></i> Shartnoma
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         <br>
