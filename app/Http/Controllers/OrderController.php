@@ -271,7 +271,7 @@ class OrderController extends Controller
 
         $phpword->setValue('{docNumber}', $order->id);
         $phpword->setValue('{name}', $order->name);
-        $phpword->setValue('{containerPrice}', number_format($order->container_price, 2) . ' so\'m');
+        $phpword->setValue('{containerPrice}', number_format($order->container_price, 2, '.', ' ') . ' so\'m');
         $phpword->setValue('{phone}', $order->phone);
         $phpword->setValue('{town}', $order->town);
 
