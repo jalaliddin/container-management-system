@@ -295,6 +295,7 @@ class OrderController extends Controller
         $phpword->setValue('{date_of_issue}', $order->date_of_issue);
         $phpword->setValue('{authority}', $order->passport_authority);
         $phpword->setValue('{address}', $order->passport_address);
+        $phpword->setValue('{date}', strftime('%d %B %Y',strtotime($order->created_at)));
 
         $phpword->saveAs(public_path('docs/' . $order->id . '_' . $order->name . '_agreement.docx'));
 
