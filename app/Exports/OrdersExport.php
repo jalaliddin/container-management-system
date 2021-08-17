@@ -36,7 +36,11 @@ class OrdersExport implements FromCollection, WithHeadings
             "Kiritgan shaxs ismi",
             "Yaratilgan vaqti",
             "Yangilangan vaqti",
-            "Konteynerning umumiy summasi"
+            "Konteynerning umumiy summasi",
+            "Pasport seriyasi va raqami",
+            "Passport berilgan vaqti",
+            "Kim tomonidan berilgan",
+            "Yashash manzili"
         ];
     }
 
