@@ -292,7 +292,7 @@ class OrderController extends Controller
         $phpword->setValue('{phone}', $order->phone);
         $phpword->setValue('{town}', $order->town);
         $phpword->setValue('{passport}', $order->passport_number);
-        $phpword->setValue('{date_of_issue}', $order->date_of_issue);
+        $phpword->setValue('{date_of_issue}', date('d.m.Y',strtotime($order->date_of_issue)));
         $phpword->setValue('{authority}', $order->passport_authority);
         $phpword->setValue('{address}', $order->passport_address);
         $phpword->setValue('{date}', strftime('%d %B %Y',strtotime($order->created_at)));
