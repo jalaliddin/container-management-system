@@ -471,13 +471,6 @@
                                     <span>+998</span><input type="number" class="form-control" id="phone" minlength="9"
                                                             name="phone" placeholder="Telefon raqami">
                                 </div>
-                                <input hidden readonly type="number" id="number" value="0.00" name="container_price">
-                                <b>Konteynerning kelajakdagi joylashuvini tanlang.</b>
-                                <div class="form-group">
-                                    <div id="map"></div>
-                                </div>
-                                <input hidden readonly type="text" id="lat" value="" name="lat">
-                                <input hidden readonly type="text" id="long" value="" name="long">
                                 <b>Shahar/Tumanni tanlang:</b>
                                 <div class="form-group">
                                     <select class="custom-select" name="town">
@@ -496,6 +489,31 @@
                                         <option value="none">none</option>
                                     </select>
                                 </div>
+                                <b>Passport ma'lumotlarini kiriting:</b>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="passport_number" name="passport_number"
+                                           placeholder="Seriya va raqami">
+                                </div>
+                                <div class="form-group">
+                                    <input type="date" class="form-control" id="date_of_issue" name="date_of_issue"
+                                           placeholder="Berilgan sanasi">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="passport_authority" name="passport_authority"
+                                           placeholder="Kim tomonidan berilgan">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="passport_address" name="passport_address"
+                                           placeholder="Yashash manzili">
+                                </div>
+                                <hr>
+                                <input hidden readonly type="number" id="number" value="0.00" name="container_price">
+                                <b>Konteynerning kelajakdagi joylashuvini tanlang.</b>
+                                <div class="form-group">
+                                    <div id="map"></div>
+                                </div>
+                                <input hidden readonly type="text" id="lat" value="" name="lat">
+                                <input hidden readonly type="text" id="long" value="" name="long">
                                 <input hidden readonly type="number" value="1" name="status">
                                 <b> Тип контейнера:</b>
                                 <div class="form-group">

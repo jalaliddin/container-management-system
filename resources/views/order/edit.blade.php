@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        #map {
+            height: 300px;
+            border: 1px solid #000;
+        }
+    </style>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col">
@@ -34,15 +40,6 @@
                                                         name="phone" placeholder="Telefon raqami"
                                                         value="{{$order->phone}}">
                             </div>
-                            <b>Konteyner summasi:</b>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="price-input" name="container_price_format"
-                                       placeholder="Konteyner summasi" value="{{$order->container_price}}">
-                            </div>
-                            <input hidden readonly type="number" id="number" name="container_price"
-                                   value="{{$order->container_price}}">
-                            <div class="form-group">
-                            </div>
                             <b>Shahar/Tumanni tanlang:</b>
                             <div class="form-group">
                                 <select sel class="custom-select" name="town">
@@ -64,6 +61,24 @@
                                     <option value="none">none</option>
                                 </select>
                             </div>
+                            <b>Passport ma'lumotlarini o'zgartirish:</b>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="passport_number" name="passport_number"
+                                       placeholder="Seriya va raqami" value="{{$order->passport_number}}">
+                            </div>
+                            <div class="form-group">
+                                <input type="date" class="form-control" id="date_of_issue" name="date_of_issue"
+                                       placeholder="Berilgan sanasi" value="{{$order->date_of_issue}}">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="passport_authority" name="passport_authority"
+                                       placeholder="Kim tomonidan berilgan" value="{{$order->passport_authority}}">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="passport_address" name="passport_address"
+                                       placeholder="Yashash manzili" value="{{$order->passport_address}}">
+                            </div>
+                            <hr>
                             <b>Holati:</b>
                             <div class="form-group">
                                 <select class="custom-select" name="status">
@@ -78,6 +93,19 @@
                                     <option value="3">Tayyor</option>
                                 </select>
                             </div>
+                            <b>Konteyner summasi:</b>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="price-input" name="container_price_format"
+                                       placeholder="Konteyner summasi" value="{{$order->container_price}}">
+                            </div>
+                            <input hidden readonly type="number" id="number" name="container_price"
+                                   value="{{$order->container_price}}">
+                            <b>Konteynerning kelajakdagi joylashuvini o'zgartirish.</b>
+                            <div class="form-group">
+                                <div id="map"></div>
+                            </div>
+                            <input hidden readonly type="text" id="lat" value="{{$order->coordinate->address_latitude}}" name="lat">
+                            <input hidden readonly type="text" id="long" value="{{$order->coordinate->address_longitude}}" name="long">
                             <b> Тип контейнера:</b>
                             <div class="form-group">
                                 <select class="custom-select" name="container_type">
@@ -179,7 +207,28 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript"
+            src="https://maps.google.com/maps/api/js?key=AIzaSyDjebhPUM5ER3yiFDvN4uHoX8PlnYSrmuQ&sensor=false"></script>
     <script>
+        window.onload = function () {
+            var latlng = new google.maps.LatLng({!! json_encode($order->coordinate->address_latitude??'') !!}, {!! json_encode($order->coordinate->address_longitude??'') !!});
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: latlng,
+                zoom: 11,
+                mapTypeId: 'hybrid'
+            });
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title: 'Set lat/lon values for this property',
+                draggable: true
+            });
+            google.maps.event.addListener(marker, 'dragend', function (a) {
+                console.log(a);
+                document.getElementById("lat").value = a.latLng.lat().toFixed(4);
+                document.getElementById("long").value = a.latLng.lng().toFixed(4)
+            });
+        };
         document.getElementById("price-input").onblur = function () {
 
             //number-format the user input

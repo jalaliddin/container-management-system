@@ -24,7 +24,11 @@ class Order extends Model
         'table_6',
         'table_7',
         'description',
-        'author'
+        'author',
+        'passport_number',
+        'date_of_issue',
+        'passport_authority',
+        'passport_address'
     ];
 
     public function payments()

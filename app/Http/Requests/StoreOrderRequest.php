@@ -37,7 +37,11 @@ class StoreOrderRequest extends FormRequest
             'type_5' => 'required',
             'type_6' => 'required',
             'type_7' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'passport_number' => 'required',
+            'date_of_issue' => 'required',
+            'passport_authority' => 'required',
+            'passport_address' => 'required'
         ];
     }
 }

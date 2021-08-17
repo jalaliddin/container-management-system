@@ -73,7 +73,19 @@
                                                 Telefon raqami: <b>{{$order->phone}}</b>
                                             </li>
                                             <li>
-                                                Shahar: <b>{{$order->town}}</b>
+                                                Pasport raqami va seriyasi: <b>{{$order->passport_number}}</b>
+                                            </li>
+                                            <li>
+                                                Berilgan sanasi: <b>{{$order->date_of_issue}}</b>
+                                            </li>
+                                            <li>
+                                                Kim tomonidan berilgan: <b>{{$order->passport_authority}}</b>
+                                            </li>
+                                            <li>
+                                                Shahar/Tuman: <b>{{$order->town}}</b>
+                                            </li>
+                                            <li>
+                                                Yashash manzili: <b>{{$order->passport_address}}</b>
                                             </li>
                                             <li>
                                                 Konteyner qiymati: <b>@money($order->container_price)</b>

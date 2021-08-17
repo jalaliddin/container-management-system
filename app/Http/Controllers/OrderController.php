@@ -66,7 +66,11 @@ class OrderController extends Controller
             'table_6' => $request->type_6,
             'table_7' => $request->type_7,
             'description' => $request->description,
-            'author' => Auth::user()->name
+            'author' => Auth::user()->name,
+            'passport_number' => $request->passport_number,
+            'date_of_issue' => $request->date_of_issue,
+            'passport_authority' => $request->passport_authority,
+            'passport_address' => $request->passport_address
         ]);
 
         $coordinates = new OrderCoordinates();
@@ -137,8 +141,16 @@ class OrderController extends Controller
         $order->table_6 = $request->type_6;
         $order->table_7 = $request->type_7;
         $order->description = $request->description;
-//        $order->author = Auth::user()->name;
+        $order->passport_number = $request->passport_number;
+        $order->date_of_issue = $request->date_of_issue;
+        $order->passport_authority = $request->passport_authority;
+        $order->passport_address = $request->passport_address;
+
+        $order->coordinate->address_latitude = $request->lat;
+        $order->coordinate->address_longitude =$request->long;
+        $order->coordinate->save();
         $order->save();
+
         return redirect('/order')->with('message', 'Contact updated!');
     }
 
@@ -234,7 +246,12 @@ class OrderController extends Controller
             'table_6' => $request->type_6,
             'table_7' => $request->type_7,
             'description' => $request->description,
-            'author' => 'Online ' . request()->ip()
+            'author' => 'Online ' . request()->ip(),
+            'passport_number' => $request->passport_number,
+            'date_of_issue' => $request->date_of_issue,
+            'passport_authority' => $request->passport_authority,
+            'passport_address' => $request->passport_address
+
         ]);
 
         $coordinates = new OrderCoordinates();
@@ -274,6 +291,10 @@ class OrderController extends Controller
         $phpword->setValue('{containerPrice}', number_format($order->container_price, 2, '.', ' ') . ' so\'m');
         $phpword->setValue('{phone}', $order->phone);
         $phpword->setValue('{town}', $order->town);
+        $phpword->setValue('{passport}', $order->passport_number);
+        $phpword->setValue('{date_of_issue}', $order->date_of_issue);
+        $phpword->setValue('{authority}', $order->passport_authority);
+        $phpword->setValue('{address}', $order->passport_address);
 
         $phpword->saveAs(public_path('docs/' . $order->id . '_' . $order->name . '_agreement.docx'));
 
