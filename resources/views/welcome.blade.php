@@ -468,7 +468,7 @@
                                            placeholder="Ism va Familiya">
                                 </div>
                                 <div class="form-group">
-                                    <span>+998</span><input type="number" class="form-control" id="phone" minlength="9"
+                                    <span>+998</span><input type="tel" class="form-control" id="phone" minlength="9"
                                                             name="phone" placeholder="Telefon raqami">
                                 </div>
                                 <b>Shahar/Tumanni tanlang:</b>
