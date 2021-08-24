@@ -151,7 +151,7 @@ class OrderController extends Controller
         $order->coordinate->save();
         $order->save();
 
-        return redirect('/order')->with('message', 'Contact updated!');
+        return redirect('/order')->with('message', 'Ma\'lumotlar muvaffaqiyatli yangilandi!');
     }
 
     /**

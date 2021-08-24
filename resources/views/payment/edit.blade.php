@@ -23,7 +23,7 @@
                                 @endforeach
                             </ul>
                         @endif
-                        <form action="{{route('payment.update',$payment->id)}}" method="post" class="">
+                        <form id="updatePayment" action="{{route('payment.update',$payment->id)}}" method="post" class="">
                             @method('patch')
                             @csrf
                             <div class="form-group">
@@ -61,8 +61,8 @@
                                        value="{{$payment->payment_date}}">
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-warning float-right">Saqlash</button>
                         </form>
+                        <a href="#" class="btn btn-warning float-right" onclick="saveConfirm('updatePayment')">Yangilash</a>
                     </div>
                 </div>
             </div>

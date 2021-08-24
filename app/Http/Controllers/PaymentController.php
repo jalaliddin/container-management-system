@@ -99,7 +99,7 @@ class PaymentController extends Controller
         $payment->payment_date = $request->payment_date;
         $payment->save();
 
-        return redirect('/payment')->with('message', 'Contact updated!');
+        return redirect('/payment')->with('message', 'Ma\'lumotlar muvaffaqiyatli yangilandi!');
     }
 
     /**

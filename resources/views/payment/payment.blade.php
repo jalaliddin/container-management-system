@@ -48,44 +48,13 @@
                                                     class="fas fa-edit"></i>
                                             </button>
                                         </a>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#exampleModal{{$payment->id}}">
-                                            <i class="far fa-trash-alt"></i>
-                                        </button>
+                                        <a href="#" class="btn btn-danger btn-sm" onclick="deleteConfirm('deleleteOrder')"><i class="fas fa-trash-alt"></i></a>
+                                        <form id="deleleteOrder" action="{{ route('payment.destroy',$payment->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
                                     </td>
                                 </tr>
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal{{$payment->id}}" tabindex="-1" role="dialog"
-                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">E'tibor bering!</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Haqiqatdan ham ushbu
-                                                <b>{{$payment->order->name ?? 'Buyurtma o\'chirilgan'}}</b> buyurtmasini
-                                                o'chirishni
-                                                tasdiqlaysizmi?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                    <i class="fas fa-times-circle"></i> Yopish
-                                                </button>
-                                                <form action="{{ route('payment.destroy',$payment->id) }}"
-                                                      method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Tasdiqlayman</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             @endforeach
                             </tbody>
                         </table>

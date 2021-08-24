@@ -29,7 +29,7 @@
                                 @endforeach
                             </ul>
                         @endif
-                        <form action="{{route('order.store')}}" method="post" class="">
+                        <form id="saveOrder" action="{{route('order.store')}}" method="post" class="">
                             @csrf
                             <div class="form-group">
                                 <input type="text" class="form-control" id="name" name="name"
@@ -164,8 +164,8 @@
                                           rows="3"></textarea>
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-success float-right">Saqlash</button>
                         </form>
+                        <a href="#" class="btn btn-success float-right" onclick="saveConfirm('saveOrder')">Saqlash</a>
                     </div>
                 </div>
             </div>

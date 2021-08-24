@@ -22,7 +22,7 @@
                                 @endforeach
                             </ul>
                         @endif
-                        <form action="{{route('payment.store')}}" method="post" class="">
+                        <form id="savePayment" action="{{route('payment.store')}}" method="post" class="">
                             @csrf
                             <div class="form-group">
                                 <select class="custom-select" name="order_id">
@@ -57,8 +57,8 @@
                                        value="">
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-success float-right">Saqlash</button>
                         </form>
+                        <a href="#" class="btn btn-success float-right" onclick="saveConfirm('savePayment')">Saqlash</a>
                     </div>
                 </div>
             </div>

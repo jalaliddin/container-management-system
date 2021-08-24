@@ -28,7 +28,7 @@
                                 @endforeach
                             </ul>
                         @endif
-                        <form action="{{route('order.update', $order->id)}}" method="POST" class="">
+                        <form id="updateOrder" action="{{route('order.update', $order->id)}}" method="POST" class="">
                             @method('PATCH')
                             @csrf
                             <div class="form-group">
@@ -104,8 +104,8 @@
                             <div class="form-group">
                                 <div id="map"></div>
                             </div>
-                            <input hidden readonly type="text" id="lat" value="{{$order->coordinate->address_latitude}}" name="lat">
-                            <input hidden readonly type="text" id="long" value="{{$order->coordinate->address_longitude}}" name="long">
+                            <input hidden readonly type="text" id="lat" value="{{$order->coordinate->address_latitude??''}}" name="lat">
+                            <input hidden readonly type="text" id="long" value="{{$order->coordinate->address_longitude??''}}" name="long">
                             <b> Тип контейнера:</b>
                             <div class="form-group">
                                 <select class="custom-select" name="container_type">
@@ -200,8 +200,8 @@
                                           rows="3">{{$order->description}}</textarea>
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-warning float-right">Yangilash</button>
                         </form>
+                        <a href="#" class="btn btn-warning float-right" onclick="saveConfirm('updateOrder')">Yangilash</a>
                     </div>
                 </div>
             </div>
