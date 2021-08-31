@@ -29,6 +29,10 @@ class OrderController extends Controller
      */
     public function index()
     {
+        return response()->json([
+            'status' => 'Memory size exceeded'
+        ],200);
+
         $orders = Order::orderBy('created_at', 'desc')->paginate(10);
         return view('order.order', compact('orders'));
     }
